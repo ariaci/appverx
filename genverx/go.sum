@@ -1,3 +1,5 @@
+github.com/ariaci/appverx v0.0.0-20260924160644-e87df71b42af h1:CIKYOI98s7w1IKaPMXKnQr4yL5Ouok4m+uk3Enq1k0A=
+github.com/ariaci/appverx v0.0.0-20260924160644-e87df71b42af/go.mod h1:WMJNAlCuuAfWbDy7sDlaR1cF2hXy58Cn3dVN4kiPhQo=
 github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 h1:zYyBkD/k9seD2A7fsi6Oo2LfFZAehjjQMERAvZLEDnQ=
 github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646/go.mod h1:jpp1/29i3P1S/RLdc7JQKbRpFeM1dOBd8T9ki5s+AY8=
 github.com/tc-hib/winres v0.2.1 h1:YDE0FiP0VmtRaDn7+aaChp1KiF4owBiJa5l964l5ujA=
