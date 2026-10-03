@@ -9,9 +9,9 @@ import (
 )
 
 type Core struct {
-	Major uint
-	Minor uint
-	Patch uint
+	Major uint64
+	Minor uint64
+	Patch uint64
 }
 type PreRelease string
 type Build struct {
@@ -31,7 +31,7 @@ type Info struct {
 }
 
 var semverCoreRe = regexp.MustCompile(
-	`^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$`,
+	`^(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})(?:-((?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*))?$`,
 )
 
 func NewInfo(c string) (Info, error) {
@@ -133,9 +133,13 @@ func (i Info) String() string {
 	return s
 }
 
-func mustUint(s string) uint {
+func (b Info) HasTime() bool {
+	return b.Time != ""
+}
+
+func mustUint64(s string) uint64 {
 	v, _ := strconv.ParseUint(s, 10, 64)
-	return uint(v)
+	return uint64(v)
 }
 
 func ParseSemVerCore(c string) (SemVer, error) {
@@ -146,9 +150,9 @@ func ParseSemVerCore(c string) (SemVer, error) {
 
 	return SemVer{
 		Core: Core{
-			Major: mustUint(m[1]),
-			Minor: mustUint(m[2]),
-			Patch: mustUint(m[3]),
+			Major: mustUint64(m[1]),
+			Minor: mustUint64(m[2]),
+			Patch: mustUint64(m[3]),
 		},
 		PreRelease: PreRelease(m[4]),
 	}, nil
