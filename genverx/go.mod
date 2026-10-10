@@ -1,9 +1,9 @@
 module github.com/ariaci/rawverx/genverx
 
-go 1.23.0
+go 1.25.0
 
 require (
-	github.com/ariaci/rawverx v0.0.0-20260924160644-e87df71b42af
+	github.com/ariaci/rawverx v0.0.0-20261010193124-609d6514196c
 	github.com/tc-hib/winres v0.2.1
 )
 
