@@ -87,7 +87,7 @@ func testPreReleaseCases(t *testing.T, c string, expected Core, validCore bool) 
 	}
 
 	for _, prCase := range preReleaseCases {
-		p, _ := strings.CutPrefix(prCase.preRelease, "-")
+		p := strings.TrimPrefix(prCase.preRelease, "-")
 		i := fmt.Sprintf("%s%s", c, prCase.preRelease)
 		t.Run(i, func(t *testing.T) {
 			if validCore && prCase.valid {
