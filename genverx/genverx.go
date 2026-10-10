@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	appverx "github.com/ariaci/appverx"
+	rawverx "github.com/ariaci/rawverx"
 
 	winres "github.com/tc-hib/winres"
 	winres_version "github.com/tc-hib/winres/version"
@@ -20,22 +20,22 @@ const (
 )
 
 type Info struct {
-        Version     appverx.SemVer
+	Version     rawverx.SemVer
 	ProductName string
 	Author      string
 	Copyright   string
 }
 
 type archDefinition struct {
-        Arch    winres.Arch
+	Arch    winres.Arch
 	Postfix string
 }
 
-var archDefinitions = map[Arch]archDefinition {
-	ArchI386:  { Arch: winres.ArchI386, Postfix: "_windows_386" },
-	ArchAMD64: { Arch: winres.ArchAMD64, Postfix: "_windows_amd64" },
-	ArchARM:   { Arch: winres.ArchARM, Postfix: "_windows_arm" },
-	ArchARM64: { Arch: winres.ArchARM64, Postfix: "_windows_arm64" },
+var archDefinitions = map[Arch]archDefinition{
+	ArchI386:  {Arch: winres.ArchI386, Postfix: "_windows_386"},
+	ArchAMD64: {Arch: winres.ArchAMD64, Postfix: "_windows_amd64"},
+	ArchARM:   {Arch: winres.ArchARM, Postfix: "_windows_arm"},
+	ArchARM64: {Arch: winres.ArchARM64, Postfix: "_windows_arm64"},
 }
 
 func createWinResVersionInfo(i Info) winres_version.Info {
@@ -82,7 +82,7 @@ func writeWinResResources(rs winres.ResourceSet, a Arch, t string) (err error) {
 		return fmt.Errorf("unable to write output file: %w", err)
 	}
 
-        return nil
+	return nil
 }
 
 func Generate(info Info, arch Arch, targetPrefix string) error {

@@ -1,8 +1,8 @@
-# appverx
+# rawverx
 
 A lightweight, idiomatic Go library for application version information.
 
-`appverx` combines an application-defined semantic version with VCS information embedded by the Go toolchain. It provides structured access to version components, pre-release identifiers, Git commit information, repository state, and the VCS timestamp without requiring build-time generated source files or linker flags.
+`rawverx` combines an application-defined semantic version with VCS information embedded by the Go toolchain. It provides structured access to version components, pre-release identifiers, Git commit information, repository state, and the VCS timestamp without requiring build-time generated source files or linker flags.
 
 The design emphasizes simplicity, reproducible builds, and a clean separation between the application version and build metadata.
 
@@ -23,16 +23,16 @@ The design emphasizes simplicity, reproducible builds, and a clean separation be
 
 ## 📦 Installation
 
-Add `appverx` to your Go module:
+Add `rawverx` to your Go module:
 
 ```bash
-go get github.com/ariaci/appverx
+go get github.com/ariaci/rawverx
 ```
 
 Then import it:
 
 ```go
-import "github.com/ariaci/appverx"
+import "github.com/ariaci/rawverx"
 ```
 
 ## 🚀 Usage
@@ -48,11 +48,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ariaci/appverx"
+	"github.com/ariaci/rawverx"
 )
 
 func main() {
-	info, err := appverx.NewInfo("1.2.3")
+	info, err := rawverx.NewInfo("1.2.3")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -78,7 +78,7 @@ If no VCS information is available:
 Pre-release identifiers can be supplied as part of the application version:
 
 ```go
-info, err := appverx.NewInfo("1.2.3-rc.1")
+info, err := rawverx.NewInfo("1.2.3-rc.1")
 ```
 
 The following are examples of valid versions:
@@ -143,7 +143,7 @@ This keeps the application-defined version separate from metadata originating fr
 Versions can also be parsed directly:
 
 ```go
-version, err := appverx.ParseSemVerCore("1.2.3-rc.1")
+version, err := rawverx.ParseSemVerCore("1.2.3-rc.1")
 if err != nil {
 	log.Fatal(err)
 }
@@ -160,7 +160,7 @@ fmt.Println(version.PreRelease)
 <major>.<minor>.<patch>[-<pre-release>]
 ```
 
-Build metadata is intentionally not accepted as part of the supplied version string. Build information is represented separately by `appverx` and populated from the Go toolchain where available.
+Build metadata is intentionally not accepted as part of the supplied version string. Build information is represented separately by `rawverx` and populated from the Go toolchain where available.
 
 The numeric `major`, `minor`, and `patch` components are represented as `uint64`.
 
@@ -170,7 +170,7 @@ The numeric `major`, `minor`, and `patch` components are represented as `uint64`
 
 When available, the following settings are used:
 
-| Go build setting | appverx field |
+| Go build setting | rawverx field |
 | --- | --- |
 | `vcs.revision` | `Version.Build.Commit` |
 | `vcs.modified` | `Version.Build.Dirty` |
@@ -286,11 +286,11 @@ The VCS timestamp is included only when it is available.
 
 ## ♻️ Reproducible builds
 
-`appverx` deliberately does not generate or embed the current build time.
+`rawverx` deliberately does not generate or embed the current build time.
 
 A build timestamp would make otherwise identical builds produce different binaries and therefore break reproducibility.
 
-Instead, `appverx` uses the VCS metadata already provided by the Go toolchain:
+Instead, `rawverx` uses the VCS metadata already provided by the Go toolchain:
 
 ```text
 vcs.revision
@@ -304,10 +304,10 @@ This keeps version information tied to the source state rather than to the time 
 
 The repository also contains the optional [`genverx`](genverx) module.
 
-`genverx` can be used together with `appverx` to generate Windows `.syso` resources containing version and application metadata.
+`genverx` can be used together with `rawverx` to generate Windows `.syso` resources containing version and application metadata.
 
-It is maintained as a separate Go module so applications that only require `appverx` do not need to pull in the additional Windows resource generation dependencies.
+It is maintained as a separate Go module so applications that only require `rawverx` do not need to pull in the additional Windows resource generation dependencies.
 
 ## 📄 License
 
-`appverx` is licensed under the [MIT License](LICENSE).
+`rawverx` is licensed under the [MIT License](LICENSE).
