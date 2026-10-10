@@ -3,7 +3,7 @@ module github.com/ariaci/rawverx/genverx
 go 1.25.0
 
 require (
-	github.com/ariaci/rawverx v0.0.0-20261010193124-609d6514196c
+	github.com/ariaci/rawverx v1.0.0
 	github.com/tc-hib/winres v0.2.1
 )
 
